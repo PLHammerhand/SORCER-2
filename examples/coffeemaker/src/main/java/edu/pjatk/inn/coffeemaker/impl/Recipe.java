@@ -25,8 +25,8 @@ public class Recipe implements Serializable {
     	this.amtSugar = 0;
     	this.amtChocolate = 0;
     }
-    
-    /**
+
+	/**
 	 * Returns amount of chocolate used for specified recipe.
 	 *
 	 * @return   Returns the amtChocolate.
@@ -34,7 +34,9 @@ public class Recipe implements Serializable {
     public int getAmtChocolate() {
 		return amtChocolate;
 	}
-    /**
+	/**
+	 * Sets atmChocolate as an amount of chocolate necessary for the recipe.
+	 *
 	 * @param amtChocolate   The amtChocolate to set.
 	 */
     public void setAmtChocolate(int amtChocolate) {
@@ -42,7 +44,7 @@ public class Recipe implements Serializable {
 			this.amtChocolate = amtChocolate;
 		} 
 	}
-    /**
+	/**
 	 * Returns amount of coffee used for specified recipe.
 	 *
 	 * @return   Returns the amtCoffee.
@@ -50,7 +52,9 @@ public class Recipe implements Serializable {
     public int getAmtCoffee() {
 		return amtCoffee;
 	}
-    /**
+	/**
+	 * Sets amtCoffe as an amount of coffee necessary for the recipe.
+	 *
 	 * @param amtCoffee   The amtCoffee to set.
 	 */
     public void setAmtCoffee(int amtCoffee) {
@@ -58,7 +62,7 @@ public class Recipe implements Serializable {
 			this.amtCoffee = amtCoffee;
 		} 
 	}
-    /**
+	/**
 	 * Returns amount of milk used for specified recipe.
 	 *
 	 * @return   Returns the amtMilk.
@@ -67,6 +71,8 @@ public class Recipe implements Serializable {
 		return amtMilk;
 	}
     /**
+	 * Sets amtMilk as an amount of milk necessary for the recipe.
+	 *
 	 * @param amtMilk   The amtMilk to set.
 	 */
     public void setAmtMilk(int amtMilk) {
@@ -74,7 +80,7 @@ public class Recipe implements Serializable {
 			this.amtMilk = amtMilk;
 		} 
 	}
-    /**
+	/**
 	 * Returns amount of sugar used for specified recipe.
 	 *
 	 * @return   Returns the amtSugar.
@@ -83,6 +89,8 @@ public class Recipe implements Serializable {
 		return amtSugar;
 	}
     /**
+	 * Sets amtSugar as an amount of milk necessary for the recipe.
+	 *
 	 * @param amtSugar   The amtSugar to set.
 	 */
     public void setAmtSugar(int amtSugar) {
@@ -91,12 +99,16 @@ public class Recipe implements Serializable {
 		} 
 	}
     /**
+     * Returns the name of specified recipe.
+     *
 	 * @return   Returns the name.
 	 */
     public String getName() {
 		return name;
 	}
     /**
+     * Sets name as the name of specified recipe.
+     *
 	 * @param name   The name to set.
 	 */
     public void setName(String name) {
@@ -105,12 +117,16 @@ public class Recipe implements Serializable {
     	}
 	}
     /**
+     * Returns the price of specified recipe.
+     *
 	 * @return   Returns the price.
 	 */
     public int getPrice() {
 		return price;
 	}
     /**
+     * Sets price as the price of specified recipe.
+     *
 	 * @param price   The price to set.
 	 */
     public void setPrice(int price) {
@@ -118,35 +134,32 @@ public class Recipe implements Serializable {
 			this.price = price;
 		} 
 	}
-
 	/**
 	 * Compares two recipes' names and returns true if both are the same.
 	 *
 	 * @param r		Recipe to compare with.
 	 * @return		Returns true if both recipes' names are same.
-     */
+	 */
     public boolean equals(Recipe r) {
         if((this.name).equals(r.getName())) {
             return true;
         }
         return false;
     }
-
 	/**
 	 * ToString method.
 	 *
 	 * @return		Returns the name.
-     */
+	 */
     public String toString() {
     	return name;
     }
-
-	/**
-	 * Static function that returns recipe from given context.
-	 *
-	 * @param context				Context to get the recipe.
-	 * @return						Recipe from the context.
-	 * @throws ContextException
+    /**
+     * Static function that returns recipe from given context.
+     *
+     * @param context				Context to get the recipe.
+     * @return						Recipe from the context.
+     * @throws ContextException
      */
 	static public Recipe getRecipe(Context context) throws ContextException {
 		Recipe r = new Recipe();
@@ -158,13 +171,12 @@ public class Recipe implements Serializable {
 		r.amtChocolate = (int)context.getValue("amtChocolate");
 		return r;
 	}
-
-	/**
-	 * Static function that returns context from given recipe.
-	 *
-	 * @param recipe				Recipe to get the context.
-	 * @return						Context from the recipe.
-	 * @throws ContextException
+    /**
+     * Static function that returns context from given recipe.
+     *
+     * @param recipe				Recipe to get the context.
+     * @return						Context from the recipe.
+     * @throws ContextException
      */
 	static public Context getContext(Recipe recipe) throws ContextException {
 		Context cxt = new ServiceContext();
