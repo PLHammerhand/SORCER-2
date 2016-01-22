@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>330</y>
+      <w>230</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Recipe
+-
+-name{unique}
+-price{&gt;0}
+-amtCoffee{&gt;0}
+-amtMilk{&gt;0}
+-amtSugar{&gt;0}
+-amtChocolate{&gt;0}
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>140</y>
+      <w>220</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>CoffeeMachinesManager
+-
+-
++findCoffeeMachine()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>110</y>
+      <w>170</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>CoffeeMachine
+-
+-recipeList[0..3]
+-
++makeCoffee()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>100</y>
+      <w>180</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>MobileApp
+-
+-
++orderBeverage()
++showInfo()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>330</y>
+      <w>220</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=0..3
+knows &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>140</y>
+      <w>180</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=1..n
+commands &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>190</y>
+      <w>90</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>m1=0..3
+m2=0..n
+makes v</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>290</y>
+      <w>150</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>PaymentSystem
+-
+-
++getPayment()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>180</y>
+      <w>100</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>m1=0..n
+m2=1
+pays via v</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>330</y>
+      <w>220</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=1
+informs &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>150</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>m1=0..n
+m2=1
+&lt; communicates with &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+</diagram>

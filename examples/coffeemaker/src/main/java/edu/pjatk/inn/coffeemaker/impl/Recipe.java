@@ -27,6 +27,8 @@ public class Recipe implements Serializable {
     }
     
     /**
+	 * Returns amount of chocolate used for specified recipe.
+	 *
 	 * @return   Returns the amtChocolate.
 	 */
     public int getAmtChocolate() {
@@ -41,6 +43,8 @@ public class Recipe implements Serializable {
 		} 
 	}
     /**
+	 * Returns amount of coffee used for specified recipe.
+	 *
 	 * @return   Returns the amtCoffee.
 	 */
     public int getAmtCoffee() {
@@ -55,6 +59,8 @@ public class Recipe implements Serializable {
 		} 
 	}
     /**
+	 * Returns amount of milk used for specified recipe.
+	 *
 	 * @return   Returns the amtMilk.
 	 */
     public int getAmtMilk() {
@@ -69,6 +75,8 @@ public class Recipe implements Serializable {
 		} 
 	}
     /**
+	 * Returns amount of sugar used for specified recipe.
+	 *
 	 * @return   Returns the amtSugar.
 	 */
     public int getAmtSugar() {
@@ -109,17 +117,37 @@ public class Recipe implements Serializable {
 		if (price >= 0) {
 			this.price = price;
 		} 
-	} 
+	}
+
+	/**
+	 * Compares two recipes' names and returns true if both are the same.
+	 *
+	 * @param r		Recipe to compare with.
+	 * @return		Returns true if both recipes' names are same.
+     */
     public boolean equals(Recipe r) {
         if((this.name).equals(r.getName())) {
             return true;
         }
         return false;
     }
+
+	/**
+	 * ToString method.
+	 *
+	 * @return		Returns the name.
+     */
     public String toString() {
     	return name;
     }
 
+	/**
+	 * Static function that returns recipe from given context.
+	 *
+	 * @param context				Context to get the recipe.
+	 * @return						Recipe from the context.
+	 * @throws ContextException
+     */
 	static public Recipe getRecipe(Context context) throws ContextException {
 		Recipe r = new Recipe();
 		r.name = (String)context.getValue("name");
@@ -131,6 +159,13 @@ public class Recipe implements Serializable {
 		return r;
 	}
 
+	/**
+	 * Static function that returns context from given recipe.
+	 *
+	 * @param recipe				Recipe to get the context.
+	 * @return						Context from the recipe.
+	 * @throws ContextException
+     */
 	static public Context getContext(Recipe recipe) throws ContextException {
 		Context cxt = new ServiceContext();
 		cxt.putValue("name", recipe.getName());
