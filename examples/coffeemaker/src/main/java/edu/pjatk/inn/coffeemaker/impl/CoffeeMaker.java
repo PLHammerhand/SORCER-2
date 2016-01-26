@@ -175,21 +175,42 @@ public class CoffeeMaker implements CoffeeMaking, CoffeeService {
      * @param amtChocolate
      * @return boolean
      */
-    public boolean addInventory(int amtCoffee, int amtMilk, int amtSugar, int amtChocolate) {
-        boolean canAddInventory = true;
-        if(amtCoffee < 0 || amtMilk < 0 || amtSugar > 0 || amtChocolate < 0) {  
-            canAddInventory = false;
-        }
-        else {
-	        inventory.setCoffee(inventory.getCoffee() + amtCoffee);
-	        inventory.setMilk(inventory.getMilk() + amtMilk);
-	        inventory.setSugar(inventory.getSugar() + amtSugar);
-	        inventory.setChocolate(inventory.getChocolate() + amtChocolate);
-        }
-        return canAddInventory;
-    }
-    
-    /**
+	public boolean addInventory(int amtCoffee, int amtMilk, int amtSugar, int amtChocolate) {
+		/**
+		 * nie powinniśmy móc dodawać ujemnych ilości składników - tutaj nie możemy dodać kiedy cukier dodatni
+		 */
+
+		/*
+		* literał traktowany jest jak wartość liczbowa
+		*/
+
+		//boolean canAddInventory = true;
+		// if(amtCoffee < 0 || amtMilk < 0 || amtSugar > 0 || amtChocolate < 0) {
+		//    canAddInventory = false;
+		// }
+
+		/**fix*/
+		boolean canAddInventory = true;
+
+		if(Character.isDigit(amtChocolate)&&Character.isDigit(amtCoffee)&&Character.isDigit(amtMilk)&&Character.isDigit(amtSugar)) {
+			if (amtCoffee < 0 || amtMilk < 0 || amtSugar < 0 || amtChocolate < 0) {
+				canAddInventory = false;
+			} else {
+				inventory.setCoffee(inventory.getCoffee() + amtCoffee);
+				inventory.setMilk(inventory.getMilk() + amtMilk);
+				inventory.setSugar(inventory.getSugar() + amtSugar);
+				inventory.setChocolate(inventory.getChocolate() + amtChocolate);
+			}
+
+		}else{
+			System.out.println("Jeden z argumentów nie jest liczbą");
+			canAddInventory=false;
+		}
+		return canAddInventory;
+	}
+
+
+	/**
      * Returns the inventory of the coffee maker
      * @return Inventory
      */
@@ -204,25 +225,28 @@ public class CoffeeMaker implements CoffeeMaking, CoffeeService {
      * @param amtPaid
      * @return int
      */
-    public int makeCoffee(Recipe r, int amtPaid) {
-        boolean canMakeCoffee = true;
-        if(amtPaid < r.getPrice()) {
-            canMakeCoffee = false;
-        }
-        if(!inventory.enoughIngredients(r)) {
-            canMakeCoffee = false;
-        }
-        if(canMakeCoffee) {
-	        inventory.setCoffee(inventory.getCoffee() + r.getAmtCoffee());
-	        inventory.setMilk(inventory.getMilk() - r.getAmtMilk());
-	        inventory.setSugar(inventory.getSugar() - r.getAmtSugar());
-	        inventory.setChocolate(inventory.getChocolate() - r.getAmtChocolate());
-            return amtPaid - r.getPrice();
-        }
-        else {
-            return amtPaid;
-        }
-    }
+	public int makeCoffee(Recipe r, int amtPaid) {
+		boolean canMakeCoffee = true;
+		if(amtPaid < r.getPrice()) {
+			canMakeCoffee = false;
+		}
+		if(!inventory.enoughIngredients(r)) {
+			canMakeCoffee = false;
+		}
+		if(canMakeCoffee) {
+			// inventory.setCoffee(inventory.getCoffee() + r.getAmtCoffee()); //zamiast usuwać kawę z inwentarza to dodajemy
+			//fix
+			inventory.setCoffee(inventory.getCoffee() - r.getAmtCoffee());
+			inventory.setMilk(inventory.getMilk() - r.getAmtMilk());
+			inventory.setSugar(inventory.getSugar() - r.getAmtSugar());
+			inventory.setChocolate(inventory.getChocolate() - r.getAmtChocolate());
+			return amtPaid - r.getPrice();
+		}
+		else {
+			return amtPaid;
+		}
+	}
+
 
     /**
      * Returns an array of all the getRecipes
