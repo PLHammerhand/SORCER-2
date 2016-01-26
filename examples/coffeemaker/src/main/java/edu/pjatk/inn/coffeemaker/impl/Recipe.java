@@ -1,6 +1,7 @@
 package edu.pjatk.inn.coffeemaker.impl;
 
 import sorcer.core.context.ServiceContext;
+import sorcer.core.exertion.ObjectBlock;
 import sorcer.service.Context;
 import sorcer.service.ContextException;
 
@@ -10,6 +11,8 @@ import java.io.Serializable;
  * @author   Sarah & Mike
  */
 public class Recipe implements Serializable {
+	private final int WRONG_OBJECT = -1;
+
     private String name;
     private int price;
     private int amtCoffee;
@@ -37,10 +40,17 @@ public class Recipe implements Serializable {
     /**
 	 * @param amtChocolate   The amtChocolate to set.
 	 */
-    public void setAmtChocolate(int amtChocolate) {
-		if (amtChocolate >= 0) {
-			this.amtChocolate = amtChocolate;
-		} 
+    public void setAmtChocolate(Object amtChocolate)
+	{
+		this.amtChocolate = WRONG_OBJECT;
+
+		if(amtChocolate instanceof Integer)
+		{
+			if ((int) amtChocolate >= 0)
+			{
+				this.amtChocolate = (int) amtChocolate;
+			}
+		}
 	}
     /**
 	 * Returns amount of coffee used for specified recipe.
@@ -53,10 +63,17 @@ public class Recipe implements Serializable {
     /**
 	 * @param amtCoffee   The amtCoffee to set.
 	 */
-    public void setAmtCoffee(int amtCoffee) {
-		if (amtCoffee >= 0) {
-			this.amtCoffee = amtCoffee;
-		} 
+    public void setAmtCoffee(Object amtCoffee)
+	{
+		this.amtCoffee = WRONG_OBJECT;
+
+		if(amtCoffee instanceof Integer)
+		{
+			if ((int)amtCoffee >= 0)
+			{
+				this.amtCoffee = (int)amtCoffee;
+			}
+		}
 	}
     /**
 	 * Returns amount of milk used for specified recipe.
@@ -69,10 +86,17 @@ public class Recipe implements Serializable {
     /**
 	 * @param amtMilk   The amtMilk to set.
 	 */
-    public void setAmtMilk(int amtMilk) {
-		if (amtMilk >= 0) {
-			this.amtMilk = amtMilk;
-		} 
+    public void setAmtMilk(Object amtMilk)
+	{
+		this.amtMilk = WRONG_OBJECT;
+
+		if(amtMilk instanceof Integer)
+		{
+			if ((int) amtMilk >= 0)
+			{
+				this.amtMilk = (int) amtMilk;
+			}
+		}
 	}
     /**
 	 * Returns amount of sugar used for specified recipe.
@@ -85,10 +109,17 @@ public class Recipe implements Serializable {
     /**
 	 * @param amtSugar   The amtSugar to set.
 	 */
-    public void setAmtSugar(int amtSugar) {
-		if (amtSugar >= 0) {
-			this.amtSugar = amtSugar;
-		} 
+    public void setAmtSugar(Object amtSugar)
+	{
+		this.amtSugar = WRONG_OBJECT;
+
+		if(amtSugar instanceof Integer)
+		{
+			if ((int) amtSugar >= 0)
+			{
+				this.amtSugar = (int) amtSugar;
+			}
+		}
 	}
     /**
 	 * @return   Returns the name.
@@ -113,10 +144,17 @@ public class Recipe implements Serializable {
     /**
 	 * @param price   The price to set.
 	 */
-    public void setPrice(int price) {
-		if (price >= 0) {
-			this.price = price;
-		} 
+    public void setPrice(Object price)
+	{
+		this.price = WRONG_OBJECT;
+
+		if(price instanceof Integer)
+		{
+			if ((int) price >= 0)
+			{
+				this.price = (int) price;
+			}
+		}
 	}
 
 	/**

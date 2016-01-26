@@ -1,0 +1,14 @@
+////	BUGS	////
+<--1.
+	File:	CoffeeMaker.java	(D:\Nauka\PJATK\INN\Zadania\SORCER-2\examples\coffeemaker\src\main\java\edu\pjatk\inn\coffeemaker\impl\CoffeeMaker.java)
+	
+	Number of recipes was set to 4 not 3 (as user requirements specifies).
+<--2.
+	File:	CoffeeMaker.java	(D:\Nauka\PJATK\INN\Zadania\SORCER-2\examples\coffeemaker\src\main\java\edu\pjatk\inn\coffeemaker\impl\CoffeeMaker.java)
+	
+	Added validation for deleting all recipes from coffee machine if there are no recipes.
+<--3.
+	File:	CoffeeMaker.java	(D:\Nauka\PJATK\INN\Zadania\SORCER-2\examples\coffeemaker\src\main\java\edu\pjatk\inn\coffeemaker\impl\CoffeeMaker.java)
+			Recipe.java			(D:\Nauka\PJATK\INN\Zadania\SORCER-2\examples\coffeemaker\src\main\java\edu\pjatk\inn\coffeemaker\impl\Recipe.java)
+	
+	Added validation for correct input for recipe (checking if input is positive digit).

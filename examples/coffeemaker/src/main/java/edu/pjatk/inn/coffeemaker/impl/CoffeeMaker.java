@@ -22,7 +22,9 @@ public class CoffeeMaker implements CoffeeMaking, CoffeeService {
 	 */
 	private Recipe [] recipeArray;
 	/** Number of getRecipes in coffee maker */
-	private final int NUM_RECIPES = 4;
+	//	BUG FOUND - User Requirements specifies only 3 recipes per coffee machine.
+	//private final int NUM_RECIPES = 4;
+	private final int NUM_RECIPES = 3;
 	/** Array describing if the array is full */
 	private boolean [] recipeFull;
 	/** Inventory of the coffee maker */
@@ -48,30 +50,43 @@ public class CoffeeMaker implements CoffeeMaking, CoffeeService {
 	 * @param r
 	 * @return boolean
 	 */
-	public boolean addRecipe(Recipe r) {
+	public boolean addRecipe(Recipe r)
+	{
         boolean canAddRecipe = true;
-            
+
+		canAddRecipe = _validateCoffeeIngredients(r);
+
         //Check if the recipe already exists
-        for(int i = 0; i < NUM_RECIPES; i++) {
-            if(r.equals(recipeArray[i])) {
-                canAddRecipe = false;
-            }
-        }
-        
+		if(canAddRecipe)
+		{
+			for (int i = 0; i < NUM_RECIPES; i++)
+			{
+				if (r.equals(recipeArray[i]))
+				{
+					canAddRecipe = false;
+				}
+			}
+		}
+
         //Check for an empty recipe, add recipe to first empty spot
-        if(canAddRecipe) {
+        if(canAddRecipe)
+		{
         	int emptySpot = -1;
-	        for(int i = 0; i < NUM_RECIPES; i++) {
-	            if(!recipeFull[i]) {
+	        for(int i = 0; i < NUM_RECIPES; i++)
+			{
+	            if(!recipeFull[i])
+				{
 	                emptySpot = i;
 	                canAddRecipe = true;
 	            }
 	        }
-	        if(emptySpot != -1) {
+	        if(emptySpot != -1)
+			{
 		        recipeArray[emptySpot] = r;
 		        recipeFull[emptySpot] = true;
 	        }
-	        else {
+	        else
+			{
 	        	canAddRecipe = false;
 	        }
         }
@@ -102,12 +117,18 @@ public class CoffeeMaker implements CoffeeMaking, CoffeeService {
 	 * coffee maker
 	 * @return boolean
 	 */
-	public boolean deleteRecipes() {
+	public boolean deleteRecipes()
+	{
 		boolean canDeleteRecipes = false;
-		for (int i = 0; i < NUM_RECIPES; i++) {
-			recipeArray[i] = new Recipe();
-			recipeFull[i] = false;
-			canDeleteRecipes = true;
+
+		if(recipeFull[0] || recipeFull[1] || recipeFull[2])
+		{
+			for (int i = 0; i < NUM_RECIPES; i++)
+			{
+				recipeArray[i] = new Recipe();
+				recipeFull[i] = false;
+				canDeleteRecipes = true;
+			}
 		}
 		return canDeleteRecipes;
 	}
@@ -118,15 +139,25 @@ public class CoffeeMaker implements CoffeeMaking, CoffeeService {
      * @param newRecipe
      * @return boolean
      */
-    public boolean editRecipe(Recipe oldRecipe, Recipe newRecipe) {
+    public boolean editRecipe(Recipe oldRecipe, Recipe newRecipe)
+	{
         boolean canEditRecipe = false;
-        for(int i = 0; i < NUM_RECIPES; i++) {
-        	if(recipeArray[i].getName() != null) {
-	            if(newRecipe.equals(recipeArray[i])) {
+
+		canEditRecipe = _validateCoffeeIngredients(newRecipe);
+
+        for(int i = 0; i < NUM_RECIPES; i++)
+		{
+        	if(recipeArray[i].getName() != null)
+			{
+	            if(newRecipe.equals(recipeArray[i]))
+				{
 	            	recipeArray[i] = new Recipe();
-	            	if(addRecipe(newRecipe)) {
+	            	if(addRecipe(newRecipe))
+					{
 	            		canEditRecipe = true;
-	            	} else {
+	            	}
+					else
+					{
 	            		//Unreachable line of code
 	            		canEditRecipe = false;
 	            	}
@@ -255,5 +286,21 @@ public class CoffeeMaker implements CoffeeMaking, CoffeeService {
 		}
 
 		return context;
+	}
+
+	private boolean _validateCoffeeIngredients(Recipe r)
+	{
+		if(r.getPrice() <= 0)
+			return false;
+		else if(r.getAmtCoffee() < 0)
+			return false;
+		else if(r.getAmtMilk() < 0)
+			return false;
+		else if(r.getAmtSugar() < 0)
+			return false;
+		else if(r.getAmtChocolate() < 0)
+			return false;
+		else
+			return true;
 	}
 }
