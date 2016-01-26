@@ -27,8 +27,8 @@ public class BeverageTest {
     private final static Logger logger = LoggerFactory.getLogger(CoffeeMakerTest.class);
 
     private CoffeeMaker coffeeMaker;
-    private Recipe espresso, mocha, macchiato, americano;
-    Recipe [] r = new Recipe[4];
+    private Recipe espresso, mocha, macchiato;
+    Recipe [] r = new Recipe[3];
 
 
     @Before
@@ -44,13 +44,6 @@ public class BeverageTest {
         espresso.setAmtSugar(1);
         espresso.setAmtChocolate(0);
 
-        mocha = new Recipe();
-        mocha.setName("mocha");
-        mocha.setPrice(100);
-        mocha.setAmtCoffee(8);
-        mocha.setAmtMilk(1);
-        mocha.setAmtSugar(1);
-        mocha.setAmtChocolate(2);
 
         macchiato = new Recipe();
         macchiato.setName("macchiato");
@@ -60,23 +53,13 @@ public class BeverageTest {
         macchiato.setAmtSugar(2);
         macchiato.setAmtChocolate(0);
 
-        americano = new Recipe();
-        americano.setName("americano");
-        americano.setPrice(40);
-        americano.setAmtCoffee(7);
-        americano.setAmtMilk(1);
-        americano.setAmtSugar(2);
-        americano.setAmtChocolate(0);
-
-        r [0] = americano;
-        r [1] = mocha;
-        r [2] = macchiato;
-        r [3] = espresso;
+        r [1] = macchiato;
+        r [2] = espresso;
     }
 
     @Test
     public void testPurchaseBeverage1(){
-        assertEquals(coffeeMaker.makeCoffee(r[3],60),10);
+        assertEquals(coffeeMaker.makeCoffee(r[2],60),10);
     }
 
     @Test
@@ -98,9 +81,9 @@ public class BeverageTest {
         myCoffee.setAmtSugar(4);
         myCoffee.setAmtChocolate(5);
         myCoffee.setName("mycoffe");
-        r [3] = myCoffee;
+        r [0] = myCoffee;
 
-        assertEquals(coffeeMaker.makeCoffee(r[3],50),50);
+        assertEquals(coffeeMaker.makeCoffee(r[0],50),50);
     }
 
 }
