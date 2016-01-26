@@ -1,0 +1,8 @@
+////BUGI////
+
+1. Class: CoffeMaker Method: addInventory (Line: 147)
+	nie mo¿na dodaæ sk³adników iloœæ cukru, jak¹ chcemy dodaæ, jest wiêksza od 0
+2. Class: CoffeMaker Method: addInventory (Line: 147)
+	iloœci dodawanych sk³adników mog¹ byæ litera³ami
+3. Class: CoffeMaker Method: makeCoffee (Line: 196)
+	podczas robienia kawy zamiast ujmowaæ z inwentarza kawa jest dodawana
